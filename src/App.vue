@@ -1,15 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <h1>count:{{ countRef }}</h1>
+  <button @click="increase">increase</button>
+  <button @click="decrease">decrease</button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+function useCount() {
+  let countRef = ref(0);
+
+  const increase = () => {
+    countRef.value++;
+  };
+  const decrease = () => {
+    countRef.value--;
+  };
+  return {
+    countRef,
+    increase,
+    decrease
   }
 }
+
+export default {
+  setup() {
+    return {
+      ...useCount()
+    };
+  },
+};
 </script>
