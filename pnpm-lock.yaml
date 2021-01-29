@@ -1,5 +1,7 @@
 dependencies:
   vue: 3.0.0
+  vue-router: 4.0.3_vue@3.0.0
+  vuex: 4.0.0-rc.2_vue@3.0.0
 devDependencies:
   '@vue/compiler-sfc': 3.0.0_vue@3.0.0
   vite: 1.0.0-rc.4
@@ -2346,6 +2348,15 @@ packages:
     resolution:
       integrity: sha1-IQEGE2hhsjFwTmOBrJ6xvNZV1PA=
       tarball: vite/download/vite-1.0.0-rc.4.tgz
+  /vue-router/4.0.3_vue@3.0.0:
+    dependencies:
+      vue: 3.0.0
+    dev: false
+    peerDependencies:
+      vue: ^3.0.0
+    resolution:
+      integrity: sha1-iyYFDIiy3sfieoiDX3EEazZYI+w=
+      tarball: vue-router/download/vue-router-4.0.3.tgz
   /vue/3.0.0:
     dependencies:
       '@vue/compiler-dom': 3.0.0
@@ -2354,6 +2365,15 @@ packages:
     resolution:
       integrity: sha1-z7XfXDTvzjGbEToWZ9ErdNz9nJA=
       tarball: vue/download/vue-3.0.0.tgz
+  /vuex/4.0.0-rc.2_vue@3.0.0:
+    dependencies:
+      vue: 3.0.0
+    dev: false
+    peerDependencies:
+      vue: ^3.0.2
+    resolution:
+      integrity: sha1-NoHITrb1FxsDntqhfMeBBeIHJPM=
+      tarball: vuex/download/vuex-4.0.0-rc.2.tgz?cache=0&sync_timestamp=1611673183427&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuex%2Fdownload%2Fvuex-4.0.0-rc.2.tgz
   /wcwidth/1.0.1:
     dependencies:
       defaults: 1.0.3
@@ -2383,6 +2403,11 @@ packages:
     peerDependencies:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
     resolution:
       integrity: sha1-0FR79n985PEqct/jEmLGjX3FUcg=
       tarball: ws/download/ws-7.3.1.tgz
@@ -2402,3 +2427,5 @@ specifiers:
   '@vue/compiler-sfc': ^3.0.0-rc.1
   vite: ^1.0.0-rc.1
   vue: ^3.0.0-rc.1
+  vue-router: ^4.0.3
+  vuex: ^4.0.0-rc.2
