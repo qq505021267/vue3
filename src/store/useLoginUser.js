@@ -1,34 +1,50 @@
-import { reactive, readonly } from 'vue'
+import { reactive, inject, provide } from 'vue'
 import * as userService from '../api/user'
 
-const _state = reactive({
-    user: null,
-    loading: false
-})
+const KEY = Symbol();
 
-export const state = readonly(_state);
+export function provideStore(app) {
 
-export async function login(loginId, loginPwd) {
-    _state.loading = true;
-    const user = await userService.login(loginId, loginPwd);
-    _state.user = user;
-    _state.loading = false;
-    return user
+    const state = reactive({
+        user: null,
+        loading: false
+    })
+
+    async function login(loginId, loginPwd) {
+        state.loading = true;
+        const user = await userService.login(loginId, loginPwd);
+        state.user = user;
+        state.loading = false;
+        return user
+    }
+
+    async function logout() {
+        state.loading = true;
+        await userService.logout();
+        state.user = null;
+        state.loading = false
+    }
+
+    async function whoAmI() {
+        state.loading = true;
+        const user = await userService.whoAmI();
+        state.user = user;
+        state.loading = false;
+        return user
+    }
+
+    app.provide(KEY, {
+        state,
+        login,
+        logout,
+        whoAmI
+    })
+};
+
+export function useStore(defaultValue = null) {
+    return inject(KEY, defaultValue);
 }
 
-export async function logout() {
-    _state.loading = true;
-    await userService.logout();
-    _state.user = null;
-    _state.loading = false
-}
 
-export async function whoAmI() {
-    _state.loading = true;
-    const user = await userService.whoAmI();
-    _state.user = user;
-    _state.loading = false;
-    return user
-}
 
 

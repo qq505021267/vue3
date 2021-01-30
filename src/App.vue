@@ -19,19 +19,20 @@
 <script>
 import { computed } from "vue";
 import { useRouter } from "vue-router";
-import * as useLoginUser from "./store/useLoginUser";
+import {useStore} from "./store/useLoginUser";
 export default {
   components: {},
   setup() {
+    const store = useStore();
     const router = useRouter();
-    const loadingRef = computed(() => useLoginUser.state.loading);
-    const user = computed(() => useLoginUser.state.user);
+    const loadingRef = computed(() => store.state.loading);
+    const user = computed(() => store.state.user);
     const handleLoginOut = async () => {
-      await useLoginUser.logout();
+      await store.logout();
       router.push("/login");
     };
 
-    useLoginUser.whoAmI();
+    store.whoAmI();
 
     return {
       loadingRef,

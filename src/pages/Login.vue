@@ -20,14 +20,18 @@
 <script>
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import * as useLoginUser from "../store/useLoginUser";
+import { useStore } from "../store/useLoginUser";
 export default {
   setup() {
+    const store = useStore();
     const loginIdRef = ref("");
     const loginPwdRef = ref("");
     const router = useRouter();
     const handleSubmit = async () => {
-      const user = await useLoginUser.login(loginIdRef.value,loginPwdRef.value);
+      const user = await store.login(
+        loginIdRef.value,
+        loginPwdRef.value
+      );
       if (user) {
         loginIdRef.value = "";
         loginPwdRef.value = "";
@@ -36,8 +40,7 @@ export default {
         alert("账号或密码错误");
       }
     };
-    const loadingRef = computed(() => useLoginUser.state.loading);
-
+    const loadingRef = computed(() => store.state.loading);
     return {
       loadingRef,
       loginIdRef,
